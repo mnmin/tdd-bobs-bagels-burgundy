@@ -14,7 +14,7 @@ class Basket {
     }
     addItem(itemName, itemQuantity) {
         const fullMenu = MENU.GetMenu()
-        for (const items in fullMenu) {
+        //for (const items in fullMenu) {
             if (items === itemName) {
                 const insideBasket = {
                     item: itemName,
@@ -22,9 +22,13 @@ class Basket {
                     price: fullMenu[items]
                 }
                 this.basket.push(insideBasket)
+                return insideBasket
             }
-        }
+        //}
+        return "error invalid input"
     }
+
+    
 
     removeItem(itemName) {
         for (let i = 0; i < this.basket.length; i++)
@@ -59,7 +63,13 @@ class Basket {
     }
 }
 
-//This is michele
+const basket = new Basket()
+console.log(basket.addItem())
+console.log(basket.getBasket())
 
-
+// TODO: QUESTION for and if statements, the return statement must be the same data type as the for/if statement???
+//ADD ITEM TO BASKET
+//Missing the return of a single added item to the basket, can't check unless we use console.log
+//Missing test for invalid input
+//
 module.exports = Basket

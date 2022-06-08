@@ -18,14 +18,24 @@ describe("Basket", () => {
 
     //Test 2
     it("Add items to basket", () => {
-        const expected = [
-            { item: "bagel", quantity: 1, price: 2.99 },
-            { item: "brownie", quantity: 3, price: 3.99 }]
+        const expected = 
+            //{ item: "bagel", quantity: 1, price: 2.99 },
+            { item: "brownie", quantity: 3, price: 3.99 }
 
-        basket.addItem("bagel", 1)
-        basket.addItem("brownie", 3)
-        let bagelInBasket = basket.getBasket()
+        //basket.addItem("bagel", 1)
+        //basket.addItem("brownie", 3)
+        let bagelInBasket = basket.addItem("brownie", 3)
         expect(bagelInBasket).toEqual(expected)
+    })
+    //Test 2.5
+    it("Wrong item added to basket", () => {
+        //const expected = 
+            //{ item: "bagel", quantity: 1, price: 2.99 },
+
+        //basket.addItem("bagel", 1)
+        //basket.addItem("brownie", 3)
+        let bagelInBasket = basket.addItem()
+        expect(bagelInBasket).toEqual('error invalid input')
     })
 
     //Test 3
