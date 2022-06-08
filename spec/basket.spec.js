@@ -29,15 +29,11 @@ describe("Basket", () => {
     })
     //Test 2.5
     it("Wrong item added to basket", () => {
-        //const expected = 
-            //{ item: "bagel", quantity: 1, price: 2.99 },
 
-        //basket.addItem("bagel", 1)
-        //basket.addItem("brownie", 3)
         let bagelInBasket = basket.addItem()
         expect(bagelInBasket).toEqual('error invalid input')
     })
-
+    
     //Test 3
     it("Remove bagel from basket", () => {
         const expected = this.basket = [
@@ -51,9 +47,24 @@ describe("Basket", () => {
 
     //Test 4
     it("Alert when basket is full", () => {
+        const smallBasket = 5
+        const basket = new Basket(smallBasket)
         const expected =
 
             "Basket full, Please choose a bigger basket."
+
+        basket.addItem("bagel", 3)
+        basket.addItem("brownie", 5)
+        let alert = basket.basketCapacity()
+        expect(alert).toEqual(expected)
+    })
+    //Test 4.5
+    it("Alert when basket is full", () => {
+        const  mediumBasket = 10
+        const basket = new Basket(mediumBasket)
+        const expected =
+
+            "You have 2 spaces left in basket"
 
         basket.addItem("bagel", 3)
         basket.addItem("brownie", 5)

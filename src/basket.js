@@ -14,7 +14,7 @@ class Basket {
     }
     addItem(itemName, itemQuantity) {
         const fullMenu = MENU.GetMenu()
-        //for (const items in fullMenu) {
+        for (const items in fullMenu) {
             if (items === itemName) {
                 const insideBasket = {
                     item: itemName,
@@ -24,27 +24,28 @@ class Basket {
                 this.basket.push(insideBasket)
                 return insideBasket
             }
-        //}
+        }
         return "error invalid input"
     }
 
     
 
     removeItem(itemName) {
-        for (let i = 0; i < this.basket.length; i++)
+        for (let i = 0; i < this.basket.length; i++) {
             if (this.basket[i].item === itemName) {
                 this.basket.splice(i, 1)
                 return this.basket
             }
-            else if (this.basket[i].item !== itemName)
-                return "This item is not in the basket."
+        }
+        return "This item is not in the basket."
     }
 
     basketCapacity() {
         const totalCapacity = this.basket.reduce((total, quantity) => { return total + quantity.quantity }, 0)
-        if (totalCapacity > this.basketSize) {
+        if (totalCapacity >= this.basketSize) {
             return "Basket full, Please choose a bigger basket."
         }
+        return `You have ${this.basketSize - totalCapacity} spaces left in basket`
     }
 
     priceChecker(itemName) {
@@ -63,9 +64,11 @@ class Basket {
     }
 }
 
-const basket = new Basket()
-console.log(basket.addItem())
+const basket = new Basket(mediumBasket)
+console.log(basket.addItem('bagel', 3))
+console.log(basket.addItem('brownie', 5))
 console.log(basket.getBasket())
+console.log(basket.basketCapacity())
 
 // TODO: QUESTION for and if statements, the return statement must be the same data type as the for/if statement???
 //ADD ITEM TO BASKET
