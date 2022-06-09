@@ -93,30 +93,36 @@ describe("Basket", () => {
 
     //Test 7 
     it("price checker for items", () => {
-        const expected = 3.99
+        const menuItem = {name: 'brownie', price: 3.99}
+        const expected = menuItem.price
 
-        basket.priceChecker("brownie")
         let checkPrice = basket.priceChecker("brownie")
         expect(checkPrice).toEqual(expected)
     })
 
-    //Test 8
-    it("favourite bagel quantity", () => {
-        const expected = [{ item: "chocolateBagel", quantity: 1, price: 4.99 },
-        { item: "chocolateBagel", quantity: 1, price: 4.99 },
-        { item: "chocolateBagel", quantity: 1, price: 4.99 }]
-
-        basket.addItem("chocolateBagel", 1)
-        basket.addItem("chocolateBagel", 1)
-        basket.addItem("chocolateBagel", 1)
-        let alert = basket.getBasket()
-        expect(alert).toEqual(expected)
+    //Test 7.5 
+    it("price checker wrong item type entered", () => {
+        let checkPrice = basket.priceChecker(undefined)
+        expect(checkPrice).toEqual('error invalid input')
     })
 
-    //Test 9
+    //Test 8
+    // it("favourite bagel quantity", () => {
+    //     const expected = [{ item: "chocolateBagel", quantity: 1, price: 4.99 },
+    //     { item: "chocolateBagel", quantity: 1, price: 4.99 },
+    //     { item: "chocolateBagel", quantity: 1, price: 4.99 }]
+
+    //     basket.addItem("chocolateBagel", 1)
+    //     basket.addItem("chocolateBagel", 1)
+    //     basket.addItem("chocolateBagel", 1)
+    //     let alert = basket.getBasket()
+    //     expect(alert).toEqual(expected)
+    // })
+    
+    //Test 8
     it("basket total", () => {
         const expected = "£29.93"
-
+        
         basket.addItem("chocolateBagel", 3)
         basket.addItem("bagel", 1)
         basket.addItem("brownie", 3)

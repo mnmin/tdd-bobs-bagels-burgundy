@@ -1,4 +1,4 @@
-const MENU = require("./menu.js")
+const menu = require("./menu.js")
 const smallBasket = 5;
 const mediumBasket = 10;
 const largeBasket = 15;
@@ -9,17 +9,19 @@ class Basket {
         this.basket = []
         this.basketSize = capacity
     }
+
     getBasket() {
         return this.basket
     }
+
     addItem(itemName, itemQuantity) {
-        const fullMenu = MENU.GetMenu()
+        const fullMenu = menu.GetMenu()
         for (const items in fullMenu) {
-            if (items === itemName) {
+            if (fullMenu[items].name === itemName) {
                 const insideBasket = {
                     item: itemName,
                     quantity: itemQuantity,
-                    price: fullMenu[items]
+                    price: fullMenu[items].price
                 }
                 this.basket.push(insideBasket)
                 return insideBasket
@@ -27,8 +29,6 @@ class Basket {
         }
         return "error invalid input"
     }
-
-    
 
     removeItem(itemName) {
         for (let i = 0; i < this.basket.length; i++) {
@@ -49,9 +49,13 @@ class Basket {
     }
 
     priceChecker(itemName) {
-        const fullMenu = MENU.GetMenu()
-        for (const items in fullMenu)
-            if (itemName === items) { return fullMenu[items] }
+        const fullMenu = menu.GetMenu()
+        for (const items in fullMenu) {
+            if (fullMenu[items].name === itemName) { 
+                return fullMenu[items].price 
+            }
+        }
+        return "error invalid input"
     }
 
     basketTotal() {
@@ -64,11 +68,12 @@ class Basket {
     }
 }
 
-const basket = new Basket(mediumBasket)
-console.log(basket.addItem('bagel', 3))
-console.log(basket.addItem('brownie', 5))
-console.log(basket.getBasket())
-console.log(basket.basketCapacity())
+// const basket = new Basket(mediumBasket)
+// console.log(basket.addItem('bagel', 3))
+// console.log(basket.priceChecker('bagl'))
+// console.log(basket.addItem('brownie', 5))
+// console.log(basket.getBasket())
+// console.log(basket.basketCapacity())
 
 // TODO: QUESTION for and if statements, the return statement must be the same data type as the for/if statement???
 //ADD ITEM TO BASKET
